@@ -1,8 +1,14 @@
 <section>
-  <h4> Please insert a image </h4>
-  <input type="file" custom-on-change="Home.uploadFile"></input>
+	<h4> Please insert a image </h4>
+	<div class="item item-input-inset">
+    <label class="button button-block button-primary">
+      <input type="file" custom-on-change="Home.uploadFile"></input>
+    </label>
+   <button type="button" ng-if="Home.image" class="button button-positive" ng-click="Home.send()">Send</button> 
+  </div>
 </section>
 
 <section>
-  <button ng-if="Home.image" ng-click="Home.send()">Send</button>
+<button ng-click="Home.getPicture()" class="button button-block button-primary">Photo</button>
+<img ng-if="Home.latestPhoto" src="{{Home.latestPhoto}}"></img>
 </section>

@@ -15,5 +15,8 @@ function camera($ionicPlatform) {
     if (window.StatusBar) {
       StatusBar.styleDefault();
     }
+    if (window.navigator){
+      console.log("navigator is ok!");
+    }
   });
 }

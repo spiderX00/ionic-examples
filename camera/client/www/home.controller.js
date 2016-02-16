@@ -8,6 +8,7 @@ function HomeCtrl($scope, resource, img) {
 
   var Home = this;
   Home.send = send;
+  Home.getPicture = getPicture;
   Home.uploadFile = uploadFile;
 
   function uploadFile(event) {
@@ -28,10 +29,31 @@ function HomeCtrl($scope, resource, img) {
     resource.sendImage(Home.image)
       .then(function(response) {
         console.log(response)
+        alert('Image sent!');
       })
       .catch(function(error) {
         console.log(error)
+        alert('Something went wrong!');
       })
+  }
+
+  function getPicture(){
+    var options = {
+      quality: 75,
+      targetWidth: 320,
+      targetHeight: 320,
+      saveToPhotoAlbum: false
+    }
+
+    resource.getPicture(options)
+    .then(function(imageURI){
+      console.log(imageURI)
+      Home.latestPhoto = imageURI;
+    })
+    .catch(function(error){
+      console.log(error)
+    })
+
   }
 
 }

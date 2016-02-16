@@ -2,12 +2,13 @@ angular.module('camera.resource', ['ionic', 'camera.constants'])
 
 .service('resource', resource)
 
-resource.$inject = ['$http', 'callback']
+resource.$inject = ['$http', '$q', 'callback']
 
-function resource($http, callback) {
+function resource($http, $q, callback) {
 
   var service = {
-    sendImage: sendImage
+    sendImage: sendImage,
+    getPicture: getPicture
   }
 
   return service;
@@ -28,5 +29,17 @@ function resource($http, callback) {
       .catch(callback.failed)
   }
 
+  function getPicture(options){
+    function success(result){
+      q.resolve(result)
+    }
+    function failed(error){
+      q.reject(error)
+    }
 
+    var q = $q.defer();
+    navigator.camera.getPicture(success, failed, options);
+    
+    return q.promise;
+  }
 }
