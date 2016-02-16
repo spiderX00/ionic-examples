@@ -21,6 +21,8 @@
     "express": "*",
     "chai": "*",
     "mocha": "*",
-    "opencv": "*"
+    "body-parser": "*",
+    "opencv": "*",
+    "node-base64-image": "*"
   }
 }

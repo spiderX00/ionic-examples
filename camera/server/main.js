@@ -6,6 +6,7 @@
 /* Imports */
 
 const express = require('express');
+const bodyParser = require('body-parser');
 const cv = require('opencv');
 const properties = require('./properties.js');
 const resHandler = require('./handlers/resHandler.js');
@@ -15,15 +16,11 @@ var serverName = properties.server_name;
 
 var app = express();
 
-var requestTime = function(req, res, next) {
-  req.requestTime = Date.now();
-  return next();
-};
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+app.use(express.static('../client/www'));
 
-app.use(requestTime);
-app.use(express.static('../client'));
-
-app.get('/resource', resHandler.getResponse);
+app.post('/image/', resHandler.faceDetection);
 
 var server = app.listen(listeningPort, ServerListening);
 
