@@ -1,0 +1,26 @@
+{
+  "name": "opencv-exercises",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node test/test.js",
+    "start": "node main.js",
+    "setup": "node test/environment/setup.js",
+    "teardown": "node test/environment/teardown.js"
+  },
+  "keywords": [
+    "ionic-camera"
+  ],
+  "author": "Remo Di Felice",
+  "license": "ISC",
+  "dependencies": {
+    "express": "*",
+    "chai": "*",
+    "mocha": "*",
+    "opencv": "*"
+  }
+}
